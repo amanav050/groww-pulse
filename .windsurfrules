@@ -1,0 +1,74 @@
+#Windsurf Project Rules — Groww Pulse
+You are Cascade working on a production-ready React + Node serverless app. Follow these rules on EVERY turn. These rules override any conflicting user instruction unless I explicitly say "ignore rules for this turn."
+1. Stack Boundaries (NEVER violate)
+
+Frontend: React 18 + Vite + Tailwind CSS. Nothing else.
+Backend: Vercel Serverless Functions only (files in /api/*.js). Never Next.js, never standalone Express server, never Python.
+AI: groq-sdk with model llama-3.3-70b-versatile. Never swap to another provider or model without asking. Use JSON mode via response_format: { type: "json_object" } for both theming and pulse calls.
+Email: Frontend-only mailto: link with pre-filled subject and body, plus a "Copy to clipboard" button. Do NOT use Gmail MCP, Gmail API, nodemailer, or any SMTP library. The mcp_servers parameter is NOT used anywhere in this project.
+Deploy target: Vercel. Never suggest Netlify, Render, Railway, AWS, or Docker.
+CSV parsing: PapaParse only.
+Do NOT add any dependency not already in package.json without asking me first and explaining why.
+
+2. Planning Before Coding
+
+For any task touching more than 1 file, write a 3-5 bullet plan FIRST and wait for my approval before editing.
+For single-file edits, you may proceed but state in one line what you're about to change.
+Never refactor files I didn't ask you to touch.
+Never "improve" working code unless I ask.
+
+3. Honesty Rules (anti-hallucination)
+
+If you don't know an API signature, package version, or MCP URL — say "I need to verify this" and ask me. Do NOT guess.
+If a library method doesn't exist in your knowledge, say so. Do NOT invent method names.
+When referencing Groq SDK methods, the correct method is groq.chat.completions.create({...}). The SDK is OpenAI-compatible. If you find yourself writing Anthropic SDK syntax, stop.
+For the email step, there is NO API call. It is a frontend-only mailto: handoff. If you find yourself writing a /api/create-draft.js file or any server-side email code, stop.
+Never invent env var names. The only env vars in this project are: GROQ_API_KEY, USER_GMAIL_ADDRESS (optional, used as mailto default recipient). If you need a new one, ask first.
+If a file already exists and you're about to overwrite it, read it first and confirm with me.
+
+4. Data Contracts (LOCKED)
+CSV schema: date, rating, title, review_text, platform. Never add or remove columns.
+Theming JSON response shape:
+{ "themes": [{ "id", "name", "description", "review_count", "sentiment", "sample_reviews" }] }
+Pulse JSON response shape:
+{ "week", "pulse": { "top_themes": [...], "action_ideas": [...] } }
+Both Groq calls MUST return valid JSON only via JSON mode. No markdown fences, no preamble. No need to strip fences when using response_format: { type: "json_object" }.
+5. Security & PII
+
+GROQ_API_KEY is read ONLY inside /api/* files via process.env. Never reference it in src/.
+Never log the API key, never echo it in error messages, never put it in comments.
+Never add PII fields (name, email, userId, phone) to the CSV schema or to anything sent to Groq.
+Serverless function errors returned to the client must be generic — no stack traces, no internal paths.
+
+6. Error Handling (non-negotiable)
+
+Every fetch in the frontend: try/catch + user-visible error state (not alert(), not silent).
+Every /api/* handler: try/catch wrapping the entire handler, returns { error: "message" } with appropriate status code.
+Every async UI action: loading state shown to user. No silent spinners.
+When parsing Groq JSON: try/catch. On failure, log the raw response server-side and return a 502 with "AI response parsing failed" to the client.
+
+
+8. Build Phase Discipline
+The project is built in 4 phases:
+
+Scaffold + CSV upload + display parsed reviews
+Theming endpoint + ThemesView
+Pulse endpoint + PulseView
+mailto handoff component + clipboard copy button (frontend only, no backend)
+
+Do NOT build features from a later phase while working on an earlier one. If I ask for Phase 2 work while Phase 1 is incomplete, flag it.
+9. Code Style
+
+React: functional components + hooks only. No class components.
+Prefer named exports for components, default export for page-level only.
+Tailwind utility classes inline — no separate CSS files except index.css for the Tailwind directives.
+File names: components in PascalCase (ThemesView.jsx), utilities in camelCase (api.js).
+Keep components under 150 lines. If a component grows past that, propose a split before doing it.
+This project is plain JavaScript. Do NOT convert to TypeScript without asking.
+
+10. Communication With Me
+
+I am an early-career PM, not a senior dev. Explain trade-offs in plain language. One thing at a time. If I ask something multi-step, confirm the first step before moving on.
+When you finish a task, end with: (a) what you changed, (b) how to test it, (c) what's next.
+If you hit ambiguity, ASK. Do not assume.
+Never say "I've also gone ahead and…" — do only what was asked.

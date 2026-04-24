@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+--bg-primary: #ffffff;
+--bg-secondary: #fafafa;
+--bg-tertiary: #f4f4f5;
+--border: #e4e4e7;
+--border-strong: #d4d4d8;
+--text-primary: #18181b;
+--text-secondary: #52525b;
+--text-tertiary: #a1a1aa;
+--accent: #6366f1;
+--accent-hover: #4f46e5;
+--accent-subtle: #eef2ff;
+--success: #10b981;
+--success-subtle: #ecfdf5;
+--warning: #f59e0b;
+--warning-subtle: #fffbeb;
+--danger: #ef4444;
+--danger-subtle: #fef2f2;
+--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+--shadow-md: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+}
+.dark {
+--bg-primary: #0A0A0B;
+--bg-secondary: #111113;
+--bg-tertiary: #1A1A1D;
+--border: #27272A;
+--border-strong: #3F3F46;
+--text-primary: #FAFAFA;
+--text-secondary: #A1A1AA;
+--text-tertiary: #71717A;
+--accent: #818CF8;
+--accent-hover: #A5B4FC;
+--accent-subtle: #1E1B4B;
+--success: #34D399;
+--success-subtle: rgba(52, 211, 153, 0.12);
+--warning: #FBBF24;
+--warning-subtle: rgba(251, 191, 36, 0.12);
+--danger: #F87171;
+--danger-subtle: rgba(248, 113, 113, 0.12);
+--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+--shadow-md: 0 4px 12px 0 rgb(0 0 0 / 0.35);
+}
+html {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+body {
+min-height: 100vh;
+}
+html.dark,
+html.dark body,
+body.dark,
+.dark #root,
+.dark #root > div {
+background-color: #050507 !important;
+background-image:
+radial-gradient(ellipse 90% 70% at 15% -10%, rgba(129, 140, 248, 0.55), transparent 55%),
+radial-gradient(ellipse 90% 70% at 85% 110%, rgba(168, 85, 247, 0.45), transparent 55%),
+radial-gradient(ellipse 60% 50% at 50% 50%, rgba(79, 70, 229, 0.15), transparent 70%),
+radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 1px, transparent 1.5px) !important;
+background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px !important;
+background-attachment: fixed !important;
+background-position: 0 0, 0 0, 0 0, 0 0 !important;
+background-repeat: no-repeat, no-repeat, no-repeat, repeat !important;
+}
+.dark #root > div {
+background-color: transparent !important;
+}
+.dark .bg-background-primary,
+.dark [class*="bg-bg-primary"],
+.dark [class*="bg-white"] {
+  background-color: rgba(17, 17, 19, 0.7) !important;
+  backdrop-filter: blur(12px);
+}
