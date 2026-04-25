@@ -6,7 +6,7 @@ An AI-powered weekly review analyser built for product teams. Upload a CSV of re
 
 Demo
 🚀 Live demo: https://growwwpulse.vercel.app/
-🎥 Walkthrough video: [≤3 min demo pending recording]
+🎥 Walkthrough video: https://www.loom.com/share/892b7cf0a1b043deab661b8768f8332c
 
 Why this exists
 Product, growth, and support teams at consumer apps drown in review data. The Play Store + App Store drip in hundreds of qualitative signals per week — but nobody has time to read them. The two failure modes are:
