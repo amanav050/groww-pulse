@@ -37,7 +37,7 @@ export default async function handler(req, res) {
 
     // Call Groq API with JSON mode
     const response = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-20b',
       messages: [
         {
           role: 'user',

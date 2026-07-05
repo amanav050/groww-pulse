@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       .replace('{{THEMES_PLACEHOLDER}}', JSON.stringify(themes, null, 2));
 
     const response = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-20b',
       messages: [
         {
           role: 'user',

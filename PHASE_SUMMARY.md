@@ -34,7 +34,7 @@
 
 ### What Will Be Built
 - **Backend API**: `api/theme-reviews.js` serverless function
-  - Groq SDK integration with llama-3.3-70b-versatile model
+  - Groq SDK integration with openai/gpt-oss-20b model
   - JSON mode responses via response_format: { type: "json_object" }
   - Error handling and validation
 - **Frontend Component**: `ThemesView.jsx`
@@ -188,7 +188,7 @@ Action Ideas:
 ### Technology Stack
 - **Frontend**: React 18 + Vite + Tailwind CSS
 - **Backend**: Vercel Serverless Functions (Node.js)
-- **AI**: Groq SDK with llama-3.3-70b-versatile
+- **AI**: Groq SDK with openai/gpt-oss-20b
 - **Email**: Frontend-only mailto: links with clipboard copy
 - **CSV Parsing**: PapaParse
 - **Deployment**: Vercel

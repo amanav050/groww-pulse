@@ -35,10 +35,10 @@ Email — opens a pre-filled Gmail compose window, ready to send to your team
 Every output is strictly PII-free by design. No names, emails, or user IDs are ever included in themes, quotes, or pulse content.
 
 Tech stack
-LayerToolWhyFrontendReact 18 + ViteFast dev, Vercel-nativeStylingTailwind CSS + custom design tokensStripe-inspired aesthetic, dark/light modeBackendVercel Serverless FunctionsKeeps API keys server-side, one repoAIGroq SDK (Llama 3.3 70B) with JSON modeSub-second inference, free tier, deterministic JSON outputEmailDirect Gmail compose URLCross-platform, no OS dependencyCSV parsingPapaParseHandles ragged, real-world CSVsDeployVercelOne-click deploy, unified frontend + serverless
+LayerToolWhyFrontendReact 18 + ViteFast dev, Vercel-nativeStylingTailwind CSS + custom design tokensStripe-inspired aesthetic, dark/light modeBackendVercel Serverless FunctionsKeeps API keys server-side, one repoAIGroq SDK (openai/gpt-oss-20b) with JSON modeSub-second inference, free tier, deterministic JSON outputEmailDirect Gmail compose URLCross-platform, no OS dependencyCSV parsingPapaParseHandles ragged, real-world CSVsDeployVercelOne-click deploy, unified frontend + serverless
 
 The Groq pivot — a PM note
-The original architecture used Anthropic's Claude + Gmail MCP for a fully-automated draft creation flow (model directly orchestrates Gmail via Anthropic's Model Context Protocol). Mid-build, I pivoted to Groq (Llama 3.3 70B) + a direct Gmail compose URL due to API cost constraints on a portfolio project.
+The original architecture used Anthropic's Claude + Gmail MCP for a fully-automated draft creation flow (model directly orchestrates Gmail via Anthropic's Model Context Protocol). Mid-build, I pivoted to Groq (openai/gpt-oss-20b) + a direct Gmail compose URL due to API cost constraints on a portfolio project.
 Key design choice to make the pivot reversible: response schemas and data contracts were kept identical. Both theme-reviews and generate-pulse endpoints return JSON that matches the original MCP-era spec exactly. In a production environment with Anthropic access, the provider can be swapped by changing two files (api/theme-reviews.js and api/generate-pulse.js) — no frontend changes required.
 This is deliberately spelled out here because the ability to reason about cost vs. ideal-stack tradeoffs is part of the PM exercise this project was built for.
 
@@ -117,7 +117,7 @@ groww-pulse/
 Known limitations & v2 ideas
 Honest about what this is and isn't:
 
-Review count doesn't always sum. Llama occasionally drops some reviews from clustering. Themes are directionally correct but counts don't always add to the total CSV row count. A v2 would add a reconciliation step or swap to a stricter clustering approach.
+Review count doesn't always sum. openai/gpt-oss-20b occasionally drops some reviews from clustering. Themes are directionally correct but counts don't always add to the total CSV row count. A v2 would add a reconciliation step or swap to a stricter clustering approach.
 Ranking is count-based only. Top 3 are picked by review count, not sentiment weight. A large "positive" theme can outrank a critical "negative" theme with fewer reviews. Deliberate choice for reproducibility — v2 would add impact weighting.
 Single-user, local-first. No auth, no team accounts, no historical pulse storage. A production version would add persistence + a "compare this week vs last week" view.
 Gmail-only email handoff. Other mail clients (Outlook, Yahoo) aren't supported in v1. Fallback is the "Copy to Clipboard" button.

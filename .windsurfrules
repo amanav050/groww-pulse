@@ -4,7 +4,7 @@ You are Cascade working on a production-ready React + Node serverless app. Follo
 
 Frontend: React 18 + Vite + Tailwind CSS. Nothing else.
 Backend: Vercel Serverless Functions only (files in /api/*.js). Never Next.js, never standalone Express server, never Python.
-AI: groq-sdk with model llama-3.3-70b-versatile. Never swap to another provider or model without asking. Use JSON mode via response_format: { type: "json_object" } for both theming and pulse calls.
+AI: groq-sdk with model openai/gpt-oss-20b. Never swap to another provider or model without asking. Use JSON mode via response_format: { type: "json_object" } for both theming and pulse calls.
 Email: Frontend-only mailto: link with pre-filled subject and body, plus a "Copy to clipboard" button. Do NOT use Gmail MCP, Gmail API, nodemailer, or any SMTP library. The mcp_servers parameter is NOT used anywhere in this project.
 Deploy target: Vercel. Never suggest Netlify, Render, Railway, AWS, or Docker.
 CSV parsing: PapaParse only.

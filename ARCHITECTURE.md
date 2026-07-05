@@ -16,7 +16,7 @@ A single-page React application that transforms Groww app review CSV data into a
 ### Backend Architecture
 - **Platform**: Vercel serverless functions (Node.js runtime)
 - **API Design**: RESTful POST endpoints with JSON request/response
-- **AI Integration**: Groq SDK with llama-3.3-70b-versatile model using JSON mode
+- **AI Integration**: Groq SDK with openai/gpt-oss-20b model using JSON mode
 - **Email Service**: Frontend-only mailto: links with clipboard copy functionality
 - **Processing Pipeline**: Two-stage AI analysis (theming → pulse generation)
 
@@ -538,4 +538,4 @@ const themeSchema = {
 
 ## Decisions Log
 
-**2026-04-23** — Stack pivot from Anthropic to Groq. Original architecture specified Claude Sonnet + Gmail MCP for automated draft creation. Pivoted to Groq (Llama 3.3 70B) + mailto handoff due to API cost constraints on a portfolio project. Production version would swap back to Claude + Gmail MCP for seamless automation. All response contracts remain unchanged to keep the pivot reversible.
+**2026-04-23** — Stack pivot from Anthropic to Groq. Original architecture specified Claude Sonnet + Gmail MCP for automated draft creation. Pivoted to Groq (openai/gpt-oss-20b) + mailto handoff due to API cost constraints on a portfolio project. Production version would swap back to Claude + Gmail MCP for seamless automation. All response contracts remain unchanged to keep the pivot reversible.
